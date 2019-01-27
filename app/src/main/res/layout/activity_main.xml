@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:orientation="vertical"
+        android:id="@+id/root_view">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/app_bar"
+            app:cardElevation="8dp"
+            android:layout_height="@dimen/app_bar_height"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.robinhood.ticker.TickerView
+                    android:id="@+id/tickerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textColor="@android:color/white"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.60"/>
+
+            <TextView
+                    android:id="@+id/tv_ath_text"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/cardBackgroundWhite"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tickerView"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@string/to_the_moon"
+                    android:visibility="invisible"
+                    android:fontFamily="@font/roboto"
+                    android:typeface="normal"
+                    android:layout_marginStart="4dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_price"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@color/cardBackgroundWhite"
+            android:layout_margin="@dimen/margin"
+            app:cardElevation="8dp"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            tools:visibility="visible">
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryLight"
+                    android:padding="@dimen/margin">
+
+                <TextView
+                        android:id="@+id/tv_bitcoin_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bitcoin_price"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:textColor="@color/cardBackgroundWhite"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:fontFamily="@font/roboto"
+                        android:typeface="normal"/>
+
+                <TextView
+                        android:id="@+id/tv_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/cardBackgroundWhite"
+                        tools:text="7 days"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bitcoin_price"
+                        app:layout_constraintLeft_toLeftOf="@id/tv_bitcoin_price"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/roboto"
+                        android:typeface="normal"/>
+
+                <TextView
+                        android:id="@+id/tv_update_status"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/cardBackgroundWhite"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toRightOf="@id/tv_duration"
+                        app:layout_constraintTop_toTopOf="@id/tv_duration"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        tools:text=" • Updated a minute ago"
+                        android:fontFamily="@font/roboto"
+                        android:typeface="normal"
+                        android:layout_marginStart="4dp"/>
+
+                <com.github.mikephil.charting.charts.LineChart
+                        android:layout_marginTop="@dimen/margin"
+                        android:id="@+id/chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_duration"/>
+
+                <ImageView
+                        android:id="@+id/ic_arrow"
+                        android:layout_marginTop="@dimen/margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/chart"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:srcCompat="@drawable/ic_arrow_downward"
+                        android:contentDescription="@string/arrow_indicating_percentage_of_last_7_days"/>
+
+                <TextView
+                        android:id="@+id/tv_chart_price"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/cardBackgroundWhite"
+                        android:layout_height="wrap_content"
+                        tools:text="6.6%"
+                        app:layout_constraintTop_toTopOf="@id/ic_arrow"
+                        app:layout_constraintLeft_toRightOf="@id/ic_arrow"
+                        app:layout_constraintBottom_toBottomOf="@id/ic_arrow"
+                        android:layout_marginStart="8dp"/>
+
+                <TextView
+                        android:id="@+id/tv_highlight_price"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/cardBackgroundWhite"
+                        android:layout_height="wrap_content"
+                        tools:text="$3500"
+                        app:layout_constraintTop_toTopOf="@id/ic_arrow"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/ic_arrow"
+                        android:layout_marginStart="8dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <Button
+                        android:id="@+id/btn_advanced"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/advanced"
+                        android:layout_alignParentEnd="true"
+                        android:padding="16dp"
+                        style="@style/Widget.AppCompat.Button.Borderless"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            app:layout_constraintBottom_toBottomOf="@id/cardview_price"
+            app:layout_constraintLeft_toLeftOf="@id/cardview_price"
+            app:layout_constraintRight_toRightOf="@id/cardview_price"
+            app:lottie_rawRes="@raw/face_animation"
+            app:lottie_loop="true"
+            android:visibility="gone"
+            tools:background="@color/colorAccent"
+            android:layout_marginTop="32dp"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_rocket"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/cardview_price"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:lottie_rawRes="@raw/bms_rocket"/>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

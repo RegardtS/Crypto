@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryLight">#0086ff</color>
+    <color name="colorPrimary">#132c60</color>
+    <color name="colorPrimaryDark">#132c60</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorBackground">#f0f0f0</color>
+    <!--Have to add this manually - some OEM's change @android:color which can cause inconsistencies-->
+    <color name="cardBackgroundWhite">#fff</color>
+</resources>
